@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf8f5;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-strong: #ffffff;
+  --foreground: #1a1917;
+  --muted: #5c5852;
+  --border: rgba(26, 25, 23, 0.1);
+  --accent: #2c5e57;
+  --accent-soft: rgba(44, 94, 87, 0.1);
+  --ease-organic: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #101110;
+    --surface: rgba(24, 26, 25, 0.72);
+    --surface-strong: #181a19;
+    --foreground: #f2efe9;
+    --muted: #b2ada5;
+    --border: rgba(242, 239, 233, 0.12);
+    --accent: #84b8af;
+    --accent-soft: rgba(132, 184, 175, 0.14);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-quicksand), ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+/* Transiciones suaves para estructura Organic Craft */
+.organic-transition {
+  transition-property: transform, opacity, background-color, border-color, color, box-shadow;
+  transition-duration: 420ms;
+  transition-timing-function: var(--ease-organic);
+}
+
+.reveal-block {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 720ms var(--ease-organic),
+    transform 720ms var(--ease-organic);
+}
+
+.reveal-block[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .organic-transition,
+  .reveal-block {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
