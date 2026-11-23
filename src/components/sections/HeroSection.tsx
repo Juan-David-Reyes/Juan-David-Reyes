@@ -1,7 +1,28 @@
-import { profileData } from "@/data/profile";
+"use client";
+
 import { Container } from "@/components/layout/Container";
+import { useLanguage } from "@/context/LanguageContext";
+import { profileData } from "@/data/profile";
+
+const HERO_COPY = {
+  es: {
+    greeting: "Hola,",
+    lines: ["Diseño.", "Productos escalan.", "Simple."],
+    role: "Lead Product Designer",
+    experience: "(+7 años)",
+  },
+  en: {
+    greeting: "Hi,",
+    lines: ["I design.", "Products scale.", "Simple."],
+    role: "Lead Product Designer",
+    experience: "(7+ years)",
+  },
+} as const;
 
 export function HeroSection() {
+  const { locale } = useLanguage();
+  const copy = HERO_COPY[locale];
+
   return (
     <section
       aria-labelledby="hero-heading"
@@ -10,16 +31,21 @@ export function HeroSection() {
       <Container className="my-auto flex w-full justify-end">
         <div className="max-w-2xl text-right">
           <p className="mb-3 text-lg font-medium text-foreground/80 sm:text-xl">
-            Hi,
+            {copy.greeting}
           </p>
 
           <h1
             id="hero-heading"
             className="text-4xl font-bold leading-[1.06] tracking-tight text-foreground sm:text-6xl lg:text-7xl"
           >
-            <span className="block">I design.</span>
-            <span className="block">Products scale.</span>
-            <span className="block">Simple.</span>
+            <span className="sr-only">
+              {profileData.name}, {profileData.headline} —{" "}
+            </span>
+            {copy.lines.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
           </h1>
         </div>
       </Container>
@@ -30,8 +56,8 @@ export function HeroSection() {
             {profileData.name}
           </p>
           <p className="mt-1 flex flex-wrap items-center justify-end gap-x-6 gap-y-1 text-sm font-medium text-muted sm:text-base">
-            <span>Lead Product Designer</span>
-            <span>(7+ years)</span>
+            <span>{copy.role}</span>
+            <span>{copy.experience}</span>
           </p>
         </div>
       </Container>

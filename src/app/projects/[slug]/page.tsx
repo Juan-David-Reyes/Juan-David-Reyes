@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
 import { profileData } from "@/data/profile";
+import { SITE_URL } from "@/lib/site";
 
 export async function generateStaticParams() {
   return profileData.projects.map((project) => ({
@@ -20,9 +21,26 @@ export async function generateMetadata({
     return { title: "Proyecto no encontrado" };
   }
 
+  const canonicalPath = `/projects/${project.slug}`;
+
   return {
     title: project.title,
     description: project.summary,
+    keywords: [project.category, project.role, ...project.tags],
+    alternates: {
+      canonical: canonicalPath,
+    },
+    openGraph: {
+      title: `${project.title} | ${profileData.name}`,
+      description: project.summary,
+      url: `${SITE_URL}${canonicalPath}`,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | ${profileData.name}`,
+      description: project.summary,
+    },
   };
 }
 
@@ -36,8 +54,26 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: project.summary,
+    url: `${SITE_URL}/projects/${project.slug}`,
+    keywords: project.tags.join(", "),
+    author: {
+      "@type": "Person",
+      name: profileData.name,
+      url: SITE_URL,
+    },
+  };
+
   return (
     <main id="main-content" className="py-12 sm:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Container className="max-w-3xl space-y-10">
         <div className="space-y-6">
           <Link

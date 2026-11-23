@@ -2,17 +2,45 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import { Container } from "./Container";
 
-const NAV_ITEMS = [
-  { label: "WORKS", href: "/#proyectos" },
-  { label: "TIMELINE", href: "/#trayectoria" },
-  { label: "ABOUT ME", href: "/#capacidades" },
-  { label: "CONTACT", href: "/#contacto" },
-];
+const NAV_ITEMS = {
+  es: [
+    { label: "PROYECTOS", href: "/#proyectos" },
+    { label: "TRAYECTORIA", href: "/#trayectoria" },
+    { label: "CAPACIDADES", href: "/#capacidades" },
+    { label: "CONTACTO", href: "/#contacto" },
+  ],
+  en: [
+    { label: "WORKS", href: "/#proyectos" },
+    { label: "TIMELINE", href: "/#trayectoria" },
+    { label: "ABOUT ME", href: "/#capacidades" },
+    { label: "CONTACT", href: "/#contacto" },
+  ],
+} as const;
 
 export function Navbar() {
+  const { locale, setLocale } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [iconOpen, setIconOpen] = useState(false);
+  const items = NAV_ITEMS[locale];
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIconOpen(false);
+    }
+  };
+
+  const toggleMenu = () => {
+    if (menuOpen) {
+      closeMenu();
+    } else {
+      setMenuOpen(true);
+      setIconOpen(true);
+    }
+  };
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -23,6 +51,9 @@ export function Navbar() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setMenuOpen(false);
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          setIconOpen(false);
+        }
       }
     };
 
@@ -36,15 +67,51 @@ export function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-transparent">
-        <Container className="flex h-16 items-center justify-end">
+        <Container className="flex h-16 items-center justify-end gap-3">
+          <div
+            role="group"
+            aria-label={locale === "es" ? "Seleccionar idioma" : "Select language"}
+            className={`relative z-50 inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.14em] transition-colors duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+              iconOpen ? "text-[#f5f5f5]" : "text-foreground"
+            }`}
+          >
+            <button
+              type="button"
+              onClick={() => setLocale("es")}
+              aria-pressed={locale === "es"}
+              className={`cursor-pointer rounded px-1 py-0.5 transition-opacity duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                locale === "es"
+                  ? "opacity-100"
+                  : "opacity-45 hover:opacity-80"
+              }`}
+            >
+              ES
+            </button>
+            <span aria-hidden="true" className="opacity-35">
+              |
+            </span>
+            <button
+              type="button"
+              onClick={() => setLocale("en")}
+              aria-pressed={locale === "en"}
+              className={`cursor-pointer rounded px-1 py-0.5 transition-opacity duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                locale === "en"
+                  ? "opacity-100"
+                  : "opacity-45 hover:opacity-80"
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
           <button
             type="button"
             aria-expanded={menuOpen}
             aria-controls="fullscreen-navigation"
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className={`relative z-50 inline-flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
-              menuOpen
+            onClick={toggleMenu}
+            className={`relative z-50 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full transition-colors duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+              iconOpen
                 ? "text-[#f5f5f5] hover:bg-white/10"
                 : "text-foreground hover:bg-black/5 dark:hover:bg-white/10"
             }`}
@@ -56,14 +123,14 @@ export function Navbar() {
             >
               <span
                 className={`block h-[1.8px] rounded-full bg-current transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                  menuOpen
+                  iconOpen
                     ? "w-5 translate-y-[3.8px] rotate-45"
                     : "w-5 translate-y-0 rotate-0"
                 }`}
               />
               <span
                 className={`block h-[1.8px] rounded-full bg-current transition-[transform,width] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                  menuOpen
+                  iconOpen
                     ? "w-5 -translate-y-[3.8px] -rotate-45"
                     : "w-3.5 translate-y-0 rotate-0"
                 }`}
@@ -90,6 +157,11 @@ export function Navbar() {
           <Container className="flex h-16 items-center justify-end">
             <div className="relative h-11 w-11">
               <span
+                onTransitionEnd={(event) => {
+                  if (event.propertyName === "transform" && !menuOpen) {
+                    setIconOpen(false);
+                  }
+                }}
                 style={{
                   transform: menuOpen
                     ? "translate3d(-50%, -50%, 0) scale(1)"
@@ -105,8 +177,8 @@ export function Navbar() {
         </div>
 
         <ul className="relative z-10 flex flex-col items-center gap-3 text-center sm:gap-5">
-          {NAV_ITEMS.map((item, index) => {
-            const reverseIndex = NAV_ITEMS.length - 1 - index;
+          {items.map((item, index) => {
+            const reverseIndex = items.length - 1 - index;
             return (
               <li
                 key={item.href}
@@ -125,7 +197,7 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   tabIndex={menuOpen ? 0 : -1}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={closeMenu}
                   className="inline-block px-6 py-1 text-3xl font-bold tracking-wide text-[#f5f5f5] transition-[transform,color] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-[1.04] hover:text-white/65 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-5xl"
                 >
                   {item.label}
