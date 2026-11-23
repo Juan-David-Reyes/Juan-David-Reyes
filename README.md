@@ -10,4 +10,4 @@ I'm a **Lead Product Designer** and **Builder** with over 7 years of experience 
 
 ### 🔗 Connect with me
 * **LinkedIn:** [linkedin.com/in/jdavidreyes](https://www.linkedin.com/in/jdavidreyes)
-* **Behance:** (https://www.behance.net/jureyes)
+* **Behance:** https://www.behance.net/jureyes
