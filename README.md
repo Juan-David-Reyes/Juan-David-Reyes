@@ -1,53 +1,13 @@
-# 👋 Hi, I'm Juan David Reyes
+### Hi, I'm Juan David 👋
 
-Product Designer (UX/UI) and Frontend Developer focused on building clean, functional and high-performance digital experiences.
+I'm a **Lead Product Designer** and **Builder** with over 7 years of experience scaling digital products across fintech, banking, and education. I bridge product strategy, visual craft, and technical execution, using code and AI workflows as natural tools for rapid prototyping and end-to-end development.
 
-I specialize in:
-- UX/UI Design
-- Design Systems
-- Frontend Development
-- Web Optimization & Performance
+* 🔭 **Currently:** Leading Product Design strategy, Design Systems, and data-driven optimization (CRO) for high-traffic payment and financial products.
+* 🛠️ **Side Projects & Building:** Architecting and shipping full-stack applications *end-to-end*—taking ideas from initial wireframes to production (Frontend, Backend, and Databases).
+* 🤖 **Focus & Stack:** Product Design, DesignOps, React, TypeScript, HTML/CSS, SQL/NoSQL, and AI-assisted development workflows (Cursor, Claude, LLMs).
 
 ---
 
-## 🚀 Featured Projects
-
-### 🌐 Websites
-
-| Project | Description | Link |
-|---------|-------------|------|
-| **Café con Colombia** | E-commerce focused on Colombian coffee culture | https://www.cafeconcolombia.com |
-| **Paxzu** | Corporate website designed for conversion and performance | https://www.paxzu.com |
-| **Agropinos** | Business website for the agricultural sector | https://www.agropinos.com |
-| **Bogotá Laser** | Website for a clinic specialized in laser treatments | https://www.bogotalaser.com |
-
----
-
-## 🛠️ Tech Stack
-
-- HTML5
-- CSS3
-- Next.js
-- React
-- JavaScript
-- PHP
-
----
-
-## 📌 Naming Conventions
-
-I use the following structure for my repositories:
-
-Types:
-- web → websites and landing pages
-- app → applications and dashboards
-- api → backend services
-- ui → component libraries
-- lab → experiments and tests
-- email → emails templates
-
-Examples:
-- web-codigo-nativo-nextjs
-- app-cliente-x-dashboard
-- api-codigo-nativo-node
-- email-cliente-html
+### 🔗 Connect with me
+* **LinkedIn:** [linkedin.com/in/jdavidreyes](https://www.linkedin.com/in/jdavidreyes)
+* **Behance:** [(https://www.behance.net/jureyes)]
