@@ -42,8 +42,8 @@ const FRAGMENT_SHADER = /* glsl */ `
     vec2 flowUv = uv + vec2(0.0, uScroll * 0.25);
     float field = organicWave(flowUv, uTime);
 
-    vec3 color = mix(uColorBase, uColorGlowA, field * 0.42);
-    color = mix(color, uColorGlowB, pointerGlow * 0.34);
+    vec3 color = mix(uColorBase, uColorGlowA, field * 0.32);
+    color = mix(color, uColorGlowB, pointerGlow * 0.25);
 
     gl_FragColor = vec4(color, 1.0);
   }
@@ -58,9 +58,9 @@ function getPaletteUniforms(isDark: boolean) {
     };
   }
   return {
-    base: new THREE.Color("#faf8f5"),
-    glowA: new THREE.Color("#e8efe9"),
-    glowB: new THREE.Color("#d5e5e0"),
+    base: new THREE.Color("#f5f5f5"),
+    glowA: new THREE.Color("#ebeeee"),
+    glowB: new THREE.Color("#dfeae7"),
   };
 }
 

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
-import { AmbientCanvasLoader } from "@/components/canvas/AmbientCanvasLoader";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
 import { profileData } from "@/data/profile";
@@ -40,7 +39,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Ir al contenido principal
         </a>
 
-        <AmbientCanvasLoader />
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />

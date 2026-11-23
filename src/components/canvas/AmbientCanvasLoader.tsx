@@ -50,8 +50,6 @@ export function AmbientCanvasLoader() {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
     >
-      {/* Fallback atmosférico inmediato en CSS puro (0 KB JS, CLS = 0) */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,var(--accent-soft),transparent_48%),radial-gradient(circle_at_82%_75%,var(--accent-soft),transparent_52%)]" />
       {shouldRenderWebGL ? (
         <div className="absolute inset-0 opacity-90 transition-opacity duration-1000">
           <AmbientOrganicCanvas />
