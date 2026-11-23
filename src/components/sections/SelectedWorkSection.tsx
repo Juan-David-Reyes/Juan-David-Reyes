@@ -8,7 +8,7 @@ export function SelectedWorkSection() {
     <section
       id="proyectos"
       aria-labelledby="projects-heading"
-      className="scroll-mt-20 py-14 sm:py-20"
+      className="flex min-h-[88svh] scroll-mt-16 flex-col justify-center py-20 sm:py-28 lg:py-32"
     >
       <Container className="space-y-10">
         <Reveal>

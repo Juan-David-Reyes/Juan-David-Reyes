@@ -12,8 +12,8 @@ export const profileData: ProfileData = {
   subheadline:
     "Más de 7 años escalando productos digitales en fintech, banca y educación. Conecto estrategia de producto, Design Systems, CRO y desarrollo frontend asistido por IA.",
   availability: "Estructura inicial · Listo para contenido de LinkedIn",
-  location: "Colombia · Remoto",
-  email: "hola@tudominio.com",
+  location: "Colombia, Bogotá · Remoto",
+  email: "jdavidreyes09@gmail.com",
   socials: [
     {
       label: "LinkedIn",
@@ -23,6 +23,11 @@ export const profileData: ProfileData = {
     {
       label: "Behance",
       href: "https://www.behance.net/jureyes",
+      external: true,
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/Juan-David-Reyes",
       external: true,
     },
   ],

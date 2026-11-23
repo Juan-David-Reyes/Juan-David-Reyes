@@ -36,7 +36,7 @@ export function HeroSection() {
 
           <h1
             id="hero-heading"
-            className="text-4xl font-bold leading-[1.06] tracking-tight text-foreground sm:text-6xl lg:text-7xl"
+            className="text-5xl font-bold leading-[1.04] tracking-tight text-foreground sm:text-6xl lg:text-[80px] xl:text-[88px]"
           >
             <span className="sr-only">
               {profileData.name}, {profileData.headline} —{" "}

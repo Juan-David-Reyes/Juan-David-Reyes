@@ -67,7 +67,21 @@ export function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-transparent">
-        <Container className="flex h-16 items-center justify-end gap-3">
+        {/* Glassmorphism al alto exacto del header */}
+        <div
+          aria-hidden="true"
+          style={{
+            backgroundColor:
+              "color-mix(in srgb, var(--background) 76%, transparent)",
+            backdropFilter: "blur(16px) saturate(150%)",
+            WebkitBackdropFilter: "blur(16px) saturate(150%)",
+          }}
+          className={`pointer-events-none absolute inset-0 transition-opacity duration-300 ${
+            iconOpen ? "opacity-0" : "opacity-100"
+          }`}
+        />
+
+        <Container className="relative z-10 flex h-16 items-center justify-end gap-3">
           <div
             role="group"
             aria-label={locale === "es" ? "Seleccionar idioma" : "Select language"}

@@ -7,7 +7,7 @@ export function ContactSection() {
     <section
       id="contacto"
       aria-labelledby="contact-heading"
-      className="scroll-mt-20 py-16 sm:py-24"
+      className="flex min-h-[80svh] scroll-mt-16 flex-col justify-center py-20 sm:py-28 lg:py-32"
     >
       <Container>
         <Reveal>
