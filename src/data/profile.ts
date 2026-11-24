@@ -8,7 +8,8 @@ import type { ProfileData } from "@/types/portfolio";
 export const profileData: ProfileData = {
   name: "Juan David Reyes",
   shortName: "JDR",
-  headline: "Lead Product Designer & Builder",
+  headline:
+    "AI Product Builder & Lead Product Designer | End-to-End AI Development",
   subheadline:
     "Más de 7 años escalando productos digitales en fintech, banca y educación. Conecto estrategia de producto, Design Systems, CRO y desarrollo frontend asistido por IA.",
   availability: "Estructura inicial · Listo para contenido de LinkedIn",

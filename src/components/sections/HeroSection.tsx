@@ -1,20 +1,26 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Container } from "@/components/layout/Container";
 import { useLanguage } from "@/context/LanguageContext";
 import { profileData } from "@/data/profile";
+
+const HeroInkMetaballsCanvas = dynamic(
+  () => import("@/components/canvas/HeroInkMetaballsCanvas"),
+  { ssr: false }
+);
 
 const HERO_COPY = {
   es: {
     greeting: "Hola,",
     lines: ["Diseño.", "Productos escalan.", "Simple."],
-    role: "Lead Product Designer",
+    role: "AI Product Builder & Lead Product Designer | End-to-End AI Development",
     experience: "(+7 años)",
   },
   en: {
     greeting: "Hi,",
     lines: ["I design.", "Products scale.", "Simple."],
-    role: "Lead Product Designer",
+    role: "AI Product Builder & Lead Product Designer | End-to-End AI Development",
     experience: "(7+ years)",
   },
 } as const;
@@ -26,9 +32,9 @@ export function HeroSection() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="flex min-h-[calc(100svh-4rem)] flex-col justify-between py-12 sm:py-16 lg:py-20"
+      className="relative flex min-h-[calc(100svh-4rem)] flex-col justify-between overflow-hidden py-12 sm:py-16 lg:py-20"
     >
-      <Container className="my-auto flex w-full justify-end">
+      <Container className="relative z-10 my-auto flex w-full justify-end">
         <div className="max-w-2xl text-right">
           <p className="mb-3 text-lg font-medium text-foreground/80 sm:text-xl">
             {copy.greeting}
@@ -50,7 +56,7 @@ export function HeroSection() {
         </div>
       </Container>
 
-      <Container className="flex w-full justify-end pt-12">
+      <Container className="relative z-10 flex w-full justify-end pt-12">
         <div className="text-right">
           <p className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
             {profileData.name}
@@ -61,6 +67,9 @@ export function HeroSection() {
           </p>
         </div>
       </Container>
+
+      {/* Capa WebGL con mix-blend-mode: difference para invertir el texto al cruzarse con la tinta */}
+      <HeroInkMetaballsCanvas />
     </section>
   );
 }

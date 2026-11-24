@@ -124,7 +124,10 @@ export default async function ProjectDetailPage({
           aria-label="Estructura del caso de estudio"
           className="space-y-6"
         >
-          <article className="rounded-3xl border border-border bg-surface p-6 backdrop-blur-md">
+          <article
+            id="contexto"
+            className="scroll-mt-20 rounded-3xl border border-border bg-surface p-6 backdrop-blur-md"
+          >
             <h2 className="text-lg font-bold text-foreground">1. Contexto</h2>
             <p className="mt-2 text-sm leading-relaxed font-medium text-muted sm:text-base">
               {project.caseStudy.context}
